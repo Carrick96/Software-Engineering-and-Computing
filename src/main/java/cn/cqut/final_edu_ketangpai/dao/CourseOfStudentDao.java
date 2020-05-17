@@ -38,5 +38,5 @@ public interface CourseOfStudentDao extends BaseMapper<CourseOfStudent> {
 	 * @param courseId
 	 * @return
 	 */
-	List<User> getNumName(String courseId);
+	List<User> getStuName(String courseId);
 }

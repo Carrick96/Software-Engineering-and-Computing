@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cqut.final_edu_ketangpai.dao.CourseOfTeacherDao">
+    <select id="getTeacherName" resultType="cn.cqut.final_edu_ketangpai.entity.User">
+        select u.* from course c,course_of_teacher cot, user u where c.course_id = cot.course_id and u.user_id =
+        cot.teacher_id and cot.course_id = #{courseId}
+    </select>
+</mapper>

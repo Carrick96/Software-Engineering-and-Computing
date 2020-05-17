@@ -3,14 +3,10 @@ $(function () {
 })
 //JQuery课程遍历
 function JQergodicOtherCourse() {
-    let courseId = getQueryString('courseId');
-    console.log("进入遍历");
+
     $.getJSON("teacgercourse/getcourselist", function (data) {
-
         if (data.success) {
-            // let studentCourseMap = ["教", "数据库", "917213802", "AM745W", "2019-2020", "第二学期", "第五次作业：巴拉巴拉", "第四次作业：鸡格格", "15"];
             let studentCourseMap = data.courseList;
-
             var tempHtml = "";
             $.each(studentCourseMap, function (n, value) {
                 tempHtml += '<dl class="course">';
@@ -41,7 +37,7 @@ function JQergodicOtherCourse() {
                     + '</ul>'
                     + '<div class="course-main-foot">'
                     + '<img class="course-teatherAvatar">'
-                    + '<p class="course-main-foot-member">成员<a href = "/teachercoursemember" id="course-main-foot-member-num">' + value.id + '</a>人</p>'
+                    + '<p class="course-main-foot-member">成员<a  href="/teachercoursemember?courseId=' + value.courseId + '" id="course-main-foot-member-num">' + value.id + '</a>人</p>'
                     + '<div class="more" id="more" onclick="more(' + value.id + ')">'
                     + '<p class="more-text">更多</p>'
                     + '<img class="more-img">'

@@ -142,5 +142,18 @@ public class CourseServiceImpl extends ServiceImpl<CourseDao, Course> implements
 		return courseExecution;
 	}
 
+	@Override
+	public CourseExecution getCourseById(String courseId) {
+		Course course = courseDao.selectOne(new QueryWrapper<Course>()
+				.lambda()
+				.eq(Course::getCourseId, courseId));
+		if (course == null) {
+			throw new CourseOperationException("课程信息为空");
+		}
+		CourseExecution courseExecution = new CourseExecution();
+		courseExecution.setCourse(course);
+		return courseExecution;
+	}
+
 
 }

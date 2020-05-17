@@ -65,7 +65,7 @@ public class CourseOfStudentServiceImpl extends ServiceImpl<CourseOfStudentDao, 
 
 	@Override
 	public List<User> getStudentName(String courseId) {
-		return courseOfStudentDao.getNumName(courseId);
+		return courseOfStudentDao.getStuName(courseId);
 	}
 
 	@Override

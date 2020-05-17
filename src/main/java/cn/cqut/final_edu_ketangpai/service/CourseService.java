@@ -40,4 +40,6 @@ public interface CourseService extends IService<Course> {
 	CourseExecution archiveCourse(String classId);
 
 	CourseExecution unarchiveCourse(String classId);
+
+	CourseExecution getCourseById(String courseId);
 }

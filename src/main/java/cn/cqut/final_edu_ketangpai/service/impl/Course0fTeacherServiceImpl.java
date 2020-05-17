@@ -4,12 +4,15 @@ import cn.cqut.final_edu_ketangpai.dao.CourseDao;
 import cn.cqut.final_edu_ketangpai.dao.CourseOfTeacherDao;
 import cn.cqut.final_edu_ketangpai.dto.CourseExecution;
 import cn.cqut.final_edu_ketangpai.entity.CourseOfTeacher;
+import cn.cqut.final_edu_ketangpai.entity.User;
 import cn.cqut.final_edu_ketangpai.enums.CourseStateEnum;
 import cn.cqut.final_edu_ketangpai.service.Course0fTeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @CLASSNAME:Course0fTeacherServiceImpl
@@ -32,5 +35,10 @@ public class Course0fTeacherServiceImpl extends ServiceImpl<CourseOfTeacherDao, 
 			return new CourseExecution(CourseStateEnum.NULL_COURSEID);
 		}
 		return new CourseExecution(CourseStateEnum.SUCCESS);
+	}
+
+	@Override
+	public List<User> getTeacherName(String courseId) {
+		return courseOfTeacherDao.getTeacherName(courseId);
 	}
 }

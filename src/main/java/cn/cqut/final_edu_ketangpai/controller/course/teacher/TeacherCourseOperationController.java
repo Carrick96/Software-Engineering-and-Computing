@@ -40,23 +40,53 @@ public class TeacherCourseOperationController {
 	@Autowired
 	private CourseOfStudentService courseOfStudentService;
 
-	@PostMapping("coursemember")
-	private Map<String, Object> courseMember(HttpServletRequest request) {
-		Map<String, Object> modelMap = new HashMap<>();
+	@GetMapping("getcoursebyid")
+	private Map<String, Object> getCourseById(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<>();
 		String courseId = HttpServletRequestUtil.getString(request, "courseId");
+		CourseExecution courseExecution = courseService.getCourseById(courseId);
+		if (courseExecution.getCourse() == null) {
+			map.put("success", false);
+			map.put("errMsg", CourseStateEnum.NULL_COURSE);
+		}
+		map.put("success", true);
+		request.getSession().setAttribute("course", courseExecution.getCourse());
+		return map;
+	}
+
+	@GetMapping("/coursememberofteacher")
+	private Map<String, Object> courseMemberOfTeacher(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<>();
+		Course course = (Course) request.getSession().getAttribute("course");
 		try {
-			List<User> userList = courseOfStudentService.getStudentName(courseId);
+			List<User> userList = course0fTeacherService.getTeacherName(course.getCourseId());
 			assert userList != null;
 			modelMap.put("success", true);
-			modelMap.put("userList", userList);
+
+			modelMap.put("teacherMemberList", userList);
 			return modelMap;
 		} catch (Exception e) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", e.getMessage());
 			return modelMap;
 		}
-
-
+	}
+	@GetMapping("/coursememberofstudent")
+	private Map<String, Object> courseMember(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<>();
+		Course course = (Course) request.getSession().getAttribute("course");
+		try {
+			List<User> userList = courseOfStudentService.getStudentName(course.getCourseId());
+			assert userList != null;
+			modelMap.put("success", true);
+			modelMap.put("user_role", 2);
+			modelMap.put("studentMemberList", userList);
+			return modelMap;
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
 	}
 	@GetMapping("archivecourse")
 	private Map<String, Object> archiveCourse(HttpServletRequest request) {
