@@ -14,4 +14,6 @@ public interface CourseOfTeacherDao extends BaseMapper<CourseOfTeacher> {
 	@Insert("insert into course_of_teacher (course_id,teacher_id) " +
 			"values ((select course_id from course where course_id = #{courseId}),#{teacherId}) ")
 	int joinCourse(String teacherId, String courseId);
+
+
 }

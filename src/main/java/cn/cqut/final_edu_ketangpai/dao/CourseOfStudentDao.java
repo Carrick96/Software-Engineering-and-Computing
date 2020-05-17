@@ -1,9 +1,11 @@
 package cn.cqut.final_edu_ketangpai.dao;
 
 import cn.cqut.final_edu_ketangpai.entity.CourseOfStudent;
+import cn.cqut.final_edu_ketangpai.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @CLASSNAME:CourseOfStudentDao
@@ -21,8 +23,20 @@ public interface CourseOfStudentDao extends BaseMapper<CourseOfStudent> {
 	@Insert("insert into course_of_student (course_id,student_id) values ((select course_id from course where course_id = #{courseId}),#{studentId}) ")
 	int joinCourse(String courseId, String studentId);
 
-	@Select("select count(cos.student_id) " +
+	/**查询选修了课程的学生数量
+	 * @param studentId
+	 * @param courseId
+	 * @return
+	 */
+	/*@Select("select count(cos.student_id) " +
 			"from course_of_student cos,course c " +
-			"where c.course_id = cos.course_id")
+			"where c.course_id = cos.course_id")*/
 	int getStudentNum(String studentId, String courseId);
+
+
+	/**通过courseId查询选修了课程的学生姓名
+	 * @param courseId
+	 * @return
+	 */
+	List<User> getNumName(String courseId);
 }

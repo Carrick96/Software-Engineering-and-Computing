@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserAdminController {
 
-	@GetMapping("/index/studentregister")
+	@GetMapping("/studentregister")
 	private String studentRegister() {
 		return "/StudentRegister";
 	}
 
-	@GetMapping("/index/teacherregister")
+	@GetMapping("/teacherregister")
 	private String teacherRegister(){
 		return "/TeacherRegister";
 	}

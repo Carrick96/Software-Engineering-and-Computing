@@ -3,6 +3,7 @@ $(function () {
 })
 //JQuery课程遍历
 function JQergodicOtherCourse() {
+    let courseId = getQueryString('courseId');
     console.log("进入遍历");
     $.getJSON("teacgercourse/getcourselist", function (data) {
 
@@ -40,7 +41,7 @@ function JQergodicOtherCourse() {
                     + '</ul>'
                     + '<div class="course-main-foot">'
                     + '<img class="course-teatherAvatar">'
-                    + '<p class="course-main-foot-member">成员<a  id="course-main-foot-member-num">' + value.id + '</a>人</p>'
+                    + '<p class="course-main-foot-member">成员<a href = "/teachercoursemember" id="course-main-foot-member-num">' + value.id + '</a>人</p>'
                     + '<div class="more" id="more" onclick="more(' + value.id + ')">'
                     + '<p class="more-text">更多</p>'
                     + '<img class="more-img">'

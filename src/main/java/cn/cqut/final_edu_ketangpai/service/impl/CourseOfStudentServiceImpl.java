@@ -3,10 +3,12 @@ package cn.cqut.final_edu_ketangpai.service.impl;
 import cn.cqut.final_edu_ketangpai.dao.CourseDao;
 import cn.cqut.final_edu_ketangpai.dao.CourseOfStudentDao;
 import cn.cqut.final_edu_ketangpai.dto.CourseExecution;
+import cn.cqut.final_edu_ketangpai.dto.CourseOfStudentExecution;
 import cn.cqut.final_edu_ketangpai.entity.Course;
 import cn.cqut.final_edu_ketangpai.entity.CourseOfStudent;
 import cn.cqut.final_edu_ketangpai.entity.User;
 import cn.cqut.final_edu_ketangpai.enums.CourseStateEnum;
+import cn.cqut.final_edu_ketangpai.exception.CourseOperationException;
 import cn.cqut.final_edu_ketangpai.service.CourseOfStudentService;
 import cn.cqut.final_edu_ketangpai.util.UserTool;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -14,6 +16,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @CLASSNAME:CourseOfStudentServiceImpl
@@ -44,6 +48,24 @@ public class CourseOfStudentServiceImpl extends ServiceImpl<CourseOfStudentDao, 
 		assert false;
 		courseExecution.setCount(studentNum);
 		return courseExecution;
+	}
+
+	@Override
+	public CourseOfStudentExecution getStudentNum(String courseId) {
+		CourseOfStudentExecution courseOfStudentExecution = new CourseOfStudentExecution();
+		Integer result = courseOfStudentDao.selectCount(new QueryWrapper<CourseOfStudent>()
+				.lambda()
+				.eq(CourseOfStudent::getCourseId, courseId));
+		if (result <= 0) {
+			throw new CourseOperationException("查询失败");
+		}
+		courseOfStudentExecution.setCount(result);
+		return courseOfStudentExecution;
+	}
+
+	@Override
+	public List<User> getStudentName(String courseId) {
+		return courseOfStudentDao.getNumName(courseId);
 	}
 
 	@Override

@@ -1,8 +1,12 @@
 package cn.cqut.final_edu_ketangpai.service;
 
 import cn.cqut.final_edu_ketangpai.dto.CourseExecution;
+import cn.cqut.final_edu_ketangpai.dto.CourseOfStudentExecution;
 import cn.cqut.final_edu_ketangpai.entity.CourseOfStudent;
+import cn.cqut.final_edu_ketangpai.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * @CLASSNAME:CourseOfStudentService
@@ -15,4 +19,8 @@ public interface CourseOfStudentService extends IService<CourseOfStudent> {
 	CourseExecution studentJoinCourse(String studentId,String courseId);
 
 	CourseExecution selectCountOfStudent(String courseId);
+
+	CourseOfStudentExecution getStudentNum(String courseId);
+
+	List<User> getStudentName(String courseId);
 }

@@ -55,5 +55,5 @@ function log() {
 }
 // 注册
 function reg() {
-    window.location.href = "/index/register";
+    window.location.href = "/register";
 }

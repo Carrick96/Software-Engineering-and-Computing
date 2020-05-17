@@ -19,4 +19,8 @@ public class CourseIndexController {
 	private String teacherCourse(){
 		return "/teachercourse";
 	}
+	@GetMapping("/teachercoursemember")
+	private String teacherCourseMember() {
+		return "/member";
+	}
 }

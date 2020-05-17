@@ -3,15 +3,13 @@ package cn.cqut.final_edu_ketangpai.exception;
 import java.io.Serializable;
 
 /**
- * @CLASSNAME:CourseOperationException
+ * @CLASSNAME:HomeworkOperationException
  * @description:
  * @author: Nonameguy
- * @create: 2020-05-11 14:14
+ * @create: 2020-05-15 16:47
  */
 public class HomeworkOperationException extends RuntimeException implements Serializable {
-
-
-	private static final long serialVersionUID = -972583661852638114L;
+	private static final long serialVersionUID = 2478797870446688269L;
 
 	public HomeworkOperationException(String msg) {
 		super(msg);

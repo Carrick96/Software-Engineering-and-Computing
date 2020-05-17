@@ -23,10 +23,10 @@ public class UserExecution {
 	//课程数量
 	private int count;
 
-	//操作的course(增删改课程的时候使用)
+	//操作的(增删改课程的时候使用)
 	private User user;
 
-	//course列表（查询时使用）
+	//列表（查询时使用）
 	private List<User> userList;
 
 	public UserExecution(){

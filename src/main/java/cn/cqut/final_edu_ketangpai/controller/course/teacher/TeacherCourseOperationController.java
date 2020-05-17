@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,6 +40,24 @@ public class TeacherCourseOperationController {
 	@Autowired
 	private CourseOfStudentService courseOfStudentService;
 
+	@PostMapping("coursemember")
+	private Map<String, Object> courseMember(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<>();
+		String courseId = HttpServletRequestUtil.getString(request, "courseId");
+		try {
+			List<User> userList = courseOfStudentService.getStudentName(courseId);
+			assert userList != null;
+			modelMap.put("success", true);
+			modelMap.put("userList", userList);
+			return modelMap;
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+
+
+	}
 	@GetMapping("archivecourse")
 	private Map<String, Object> archiveCourse(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<>();
