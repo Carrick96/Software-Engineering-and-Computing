@@ -37,9 +37,13 @@ public interface CourseService extends IService<Course> {
 
 	CourseExecution deleteCourseById(String courseId);
 
-	CourseExecution archiveCourse(String classId);
+	CourseExecution archiveCourse(int id);
 
-	CourseExecution unarchiveCourse(String classId);
+	CourseExecution unarchiveCourse(int id);
 
 	CourseExecution getCourseById(String courseId);
+
+	CourseExecution topCourse(int id);
+
+	CourseExecution untopCourse(int id);
 }

@@ -36,6 +36,28 @@ public class CourseServiceImpl extends ServiceImpl<CourseDao, Course> implements
 	private CourseOfTeacherDao courseOfTeacherDao;
 
 	@Override
+	public CourseExecution topCourse(int id) {
+		int result = courseDao.topCourse(id);
+		if (result <= 0) {
+			throw new CourseOperationException("置顶课程失败");
+		}
+		CourseExecution courseExecution = new CourseExecution();
+		courseExecution.setState(CourseStateEnum.SUCCESS.getState());
+		return courseExecution;
+	}
+
+	@Override
+	public CourseExecution untopCourse(int id) {
+		int result = courseDao.untopCourse(id);
+		if (result <= 0) {
+			throw new CourseOperationException("取消课程置顶失败");
+		}
+		CourseExecution courseExecution = new CourseExecution();
+		courseExecution.setState(CourseStateEnum.SUCCESS.getState());
+		return courseExecution;
+	}
+
+	@Override
 	public CourseExecution addCourse(Course course) {
 		CourseExecution courseExecution = new CourseExecution();
 		int result = courseDao.insert(course);
@@ -115,10 +137,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseDao, Course> implements
 	}
 
 	@Override
-	public CourseExecution archiveCourse(String classId) {
+	public CourseExecution archiveCourse(int id) {
 		CourseExecution courseExecution = new CourseExecution();
-		assert classId != null;
-		int result = courseDao.archiveCourse(classId);
+		assert id != 0;
+		int result = courseDao.archiveCourse(id);
 		assert false;
 		if (result > 0) {
 			courseExecution.setState(CourseStateEnum.SUCCESS.getState());
@@ -129,10 +151,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseDao, Course> implements
 	}
 
 	@Override
-	public CourseExecution unarchiveCourse(String classId) {
+	public CourseExecution unarchiveCourse(int id) {
 		CourseExecution courseExecution = new CourseExecution();
-		assert classId != null;
-		int result = courseDao.archiveCourse(classId);
+		assert id != 0;
+		int result = courseDao.unarchiveCourse(id);
 		assert false;
 		if (result > 0) {
 			courseExecution.setState(CourseStateEnum.SUCCESS.getState());

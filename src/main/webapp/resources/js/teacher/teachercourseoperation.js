@@ -87,7 +87,7 @@ $(function () {
         edit.courseId = courseid; //课程id
         edit.courseName = $("#input-edit-course-name").val();
         edit.className = $("#input-edit-class-name").val();
-      //  edit.year = $("#edit-course-year-box").find("option:selected").text();
+        //  edit.year = $("#edit-course-year-box").find("option:selected").text();
         // 生成表单对象，用于接收参数并传递给后台
         let editData = new FormData();
         editData.append("editStr", JSON.stringify(edit));
@@ -115,7 +115,7 @@ $(function () {
                         editExtraInfor[i].checked = false;
                     }
                     alert('提交成功！');
-                     window.location.reload();
+                    window.location.reload();
 
                 } else {
                     alert('提交失败！' + data.errMsg);
@@ -167,3 +167,143 @@ $(function () {
     });
 
 });
+
+// 课程  点击  置顶
+function courseTop(id) {
+    console.log("置顶" + id);
+    $.ajax({
+        url: "/teacgercourse/topcourse",
+        async: true,
+        cache: false,
+        type: "get",
+        dataType: 'json',
+        data: {
+            id: id,
+        },
+        success: function (data) {
+            if (data.success) {
+                alert('置顶成功！');
+                window.location.reload();
+            } else {
+                alert('置顶失败！' + data.errMsg);
+            }
+        }
+    })
+}
+
+// 课程  点击  取消置顶
+function courseUnpin(id) {
+    console.log("取消置顶" + id);
+    $.ajax({
+        url: "/teacgercourse/untopcourse",
+        async: true,
+        cache: false,
+        type: "get",
+        dataType: 'json',
+        data: {
+            id: id,
+        },
+        success: function (data) {
+            if (data.success) {
+                alert('取消置顶成功！');
+                window.location.reload();
+            } else {
+                alert('取消置顶失败！' + data.errMsg);
+            }
+        }
+    })
+}
+
+// 更多  点击归档
+function moreArchiveA(id) {
+    console.log("更多 归档" + id);
+    $.ajax({
+        url: '/teacgercourse/archivecourse',
+        async: true,
+        cache: false,
+        type: "get",
+        dataType: 'json',
+        data: {
+           id: id,
+        },
+        success: function (data) {
+            if (data.success) {
+                alert('归档成功！');
+                window.location.reload();
+            } else {
+                alert('归档失败！' + data.errMsg);
+            }
+        }
+    })
+}
+
+// 更多  点击退课
+function moreDropOutA(courseId) {
+    console.log("更多 退课" + courseId);
+    $.ajax({
+        url: "/teacgercourse/deletecourse",
+        async: true,
+        cache: false,
+        type: "get",
+        dataType: 'json',
+        data: {
+            courseId: courseId,
+        },
+        success: function (data) {
+            if (data.success) {
+                alert('删除成功！');
+                window.location.reload();
+            } else {
+                alert('删除失败！' + data.errMsg);
+                /* window.location.reload();*/
+            }
+        }
+    })
+}
+
+//归档  点击恢复
+function fileMoreBoxRecovery(id) {
+    $.ajax({
+        url: "/teacgercourse/unarchivecourse",
+        async: true,
+        cache: false,
+        type: "get",
+        dataType: 'json',
+        data: {
+            id: id,
+        },
+        success: function (data) {
+            if (data.success) {
+                alert('恢复成功！');
+                /* window.location.reload();*/
+            } else {
+                alert('恢复失败！' + data.errMsg);
+                /*  window.location.reload();*/
+            }
+        }
+    })
+}
+
+//归档  退课
+function fileMoreBoxDel(courseId) {
+    console.log("归档 退课" + courseId);
+    $.ajax({
+        url: "/teacgercourse/deletecourse",
+        async: true,
+        cache: false,
+        type: "get",
+        dataType: 'json',
+        data: {
+            courseId: courseId,
+        },
+        success: function (data) {
+            if (data.success) {
+                alert('删除成功！');
+                window.location.reload();
+            } else {
+                alert('删除失败！' + data.errMsg);
+                window.location.reload();
+            }
+        }
+    })
+}

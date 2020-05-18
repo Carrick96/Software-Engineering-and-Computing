@@ -276,6 +276,16 @@ a {
 
 /*dl*/
 .course {
+    height: 275px;
+    width: 270px;
+    float: left;
+    margin-bottom: 30px;
+    margin-left: 17px;
+    margin-right: 17px;
+    background: #fff;
+    border: 1px solid #E2E6ED;
+    border-radius: 8px;
+    position: relative;
     /*display: none;*/
 }
 
@@ -451,7 +461,7 @@ a {
 
 /*置顶*/
 .top {
-    display: none;
+    /*display: none;*/
     float: right;
     margin-right: 18px;
 }
@@ -520,26 +530,6 @@ a {
 /*上层 添加课程div块  dl*/
 .onLevel-otherCourse-create-course {
     /*display: none;*/
-}
-
-/*上层 添加课程div块  dt*/
-.create-course-bg {
-    background-image: url(../img/assets/create-course.png);
-}
-
-/*上层 添加课程div块  dd*/
-.onLevel-otherCourse-create-course dd {
-    display: flex;
-    cursor: pointer;
-}
-
-/* 第二个div块  其他课程 */
-.lowerLevel-other-course {
-    /*display: none;*/
-    position: relative;
-}
-
-dl {
     height: 275px;
     width: 270px;
     float: left;
@@ -552,12 +542,17 @@ dl {
     position: relative;
 }
 
-dt {
+/*上层 添加课程div块  dt*/
+.create-course-bg {
     height: 127px;
     width: 270px;
+    background-image: url(../img/assets/create-course.png);
 }
 
-dd {
+/*上层 添加课程div块  dd*/
+.onLevel-otherCourse-create-course dd {
+    display: flex;
+    cursor: pointer;
     height: 141px;
     width: 270px;
     /*display: flex;*/
@@ -566,16 +561,67 @@ dd {
     justify-content: center;
 }
 
+/* 第二个div块  其他课程 */
+.lowerLevel-other-course {
+    /*display: none;*/
+    position: relative;
+}
+
+/*dl{*/
+/*    height: 275px;*/
+/*    width: 270px;*/
+/*    float: left;*/
+/*    margin-bottom: 30px;*/
+/*    margin-left: 17px;*/
+/*    margin-right: 17px;*/
+/*    background: #fff;*/
+/*    border: 1px solid #E2E6ED;*/
+/*    border-radius: 8px;*/
+/*    position: relative;*/
+/*}*/
+
+/*dt{*/
+/*    height: 127px;*/
+/*    width: 270px;*/
+/*}*/
+
+/*dd{*/
+/*    height: 141px;*/
+/*    width: 270px;*/
+/*    !*display: flex;*!*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
 /*添加课程div块 dl*/
 .lowerLevel-otherCourse-create-course{
     /*display: none;*/
+    height: 275px;
+    width: 270px;
+    float: left;
+    margin-bottom: 30px;
+    margin-left: 17px;
+    margin-right: 17px;
+    background: #fff;
+    border: 1px solid #E2E6ED;
+    border-radius: 8px;
+    position: relative;
 }
 .lowerLevel-otherCourse-create-course dd {
     display: flex;
     cursor: pointer;
+    height: 141px;
+    width: 270px;
+    /*display: flex;*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
+/*dt*/
 .lowerLevel-otherCourse-create-course-bg {
+    height: 127px;
+    width: 270px;
     background-image: url(../img/assets/create-course.png);
 }
 
@@ -1010,3 +1056,294 @@ dd {
 .edit-course-sure:hover{
     background-color: cornflowerblue;
 }
+/*课程排序  归档*/
+.sort-file{
+    display: none;
+    height: 560px;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    position: fixed;
+    width: 810px;
+    margin-left: -405px;
+    overflow: hidden;
+    z-index: 15;
+    left: 1100px;
+    top: 20%;
+}
+.sort-file-title{
+    background: #f8f8f8;
+    border-bottom: 1px solid #dcdcdc;
+    height: 58px;
+    width: 100%;
+}
+.sort-file-title ul{
+    position: relative;
+    left: 29%;
+    width: 308px;
+    height: 58px;
+    list-style: none;
+    text-align: center;
+}
+.sort-file-title-sort{
+    cursor: pointer;
+    float: left;
+    /*display: inline;*/
+    width: 154px;
+    height: 55px;
+    text-align: center;
+    list-style: none;
+    color: #818181;
+    font-size: 20px;
+    display: inline-block;
+    line-height: 55px;
+    min-width: 118px;
+    /*border-bottom: 3px solid #aaa;*/
+    border-bottom: 3px solid #f8f8f8;
+}
+.sort-file-title-sort:hover{
+    color: #1F2023;
+}
+.sort-file-title-file{
+    cursor: pointer;
+    float: left;
+    /*display: inline;*/
+    width: 154px;
+    height: 55px;
+    text-align: center;
+    list-style: none;
+    color: #818181;
+    font-size: 20px;
+    display: inline-block;
+    line-height: 55px;
+    min-width: 118px;
+    /*border-bottom: 3px solid #aaa;*/
+    border-bottom: 3px solid #f8f8f8;
+}
+.sort-file-title-file:hover{
+    color: #1F2023;
+}
+.sort-file-title-X{
+    cursor: pointer;
+    height: 28px;
+    width: 28px;
+    position: absolute;
+    right: 26px;
+    top: 11px;
+    background-size: 28px 28px;
+    background-image: url("../img/assets/icon2_03.png");
+}
+.sort-file-title-X:hover{
+    background-image: url("../img/assets/icon2_25.png");
+}
+.sort-main{
+    display: none;
+    height: 499px;
+    width: 810px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+.sort-main-sort{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    list-style: none;
+}
+.sort-main-sort li{
+    cursor: pointer;
+    background: #fff;
+    margin-bottom: 1px;
+    padding-left: 40px;
+    height: 58px;
+    line-height: 58px;
+    margin-top: -1px;
+    position: relative;
+    list-style: none;
+    border: 1px solid rgb(236, 236, 236);
+}
+.sort-main-sort li:hover{
+    border: 1px solid rgb(49, 142, 235);
+}
+.sort-main-sort li i{
+    display: inline-block;
+    width: 19px;
+    height: 20px;
+    background-color: rgb(49, 142, 235);
+    background-size: 19px 20px ;
+    background-image: url("../img/assets/ybg.png");
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+.sort-main-sort li span{
+    font-size: 18px;
+    vertical-align: middle;
+}
+.sort-main-bar{
+    position: absolute;
+    display: none;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 8px;
+    background: #f6f6f6;
+}
+.sort-main-scroll{
+    top: 0px;
+    background: #000;
+    width: 8px;
+    position: absolute;
+    border-radius: 5px;
+    opacity: .4;
+    left: 0;
+}
+.file-main{
+    display: none;
+    height: 499px;
+    width: 810px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+.file-main-file{
+    /*background-color: #aaaaaa;*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 30px 70px;
+    width: 670px;
+}
+.file-main-file dl{
+    float: left;
+    width: 300px;
+    height: 110px;
+    box-sizing: border-box;
+    background-clip: padding-box;
+    position: relative;
+    margin: 15px 10px;
+}
+.file-main-file dl dt{
+    background-color: #1066af;
+    background-image: url("../img/file/01.jpg");
+    background-size: 300px 110px;
+    width: 268px;
+    clear: both;
+    height: 72px;
+    padding: 24px 16px 14px;
+}
+.file-title{
+    display: block;
+    color: #fff;
+    overflow: hidden;
+    width: 240px;
+    font-size: 20px;
+    font-weight: lighter;
+    cursor: pointer;
+    color: #fff;
+    height: 26px;
+    line-height: 26px;
+}
+.file-role{
+    color: #fff;
+    line-height: 20px;
+    padding-top: 14px;
+    font-size: 12px;
+    width: 264px;
+    height: 42px;
+    overflow: hidden;
+}
+.file-more{
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    display: block;
+    cursor: pointer;
+    width: 5px;
+    height: 25px;
+    line-height: 32px;
+    text-align: center;
+    background-size: 5px 25px;
+    background-image: url("../img/file/kczt_23.png");
+}
+.file-more-box{
+    display: none;
+    position: absolute;
+    top: 69px;
+    right: 15px;
+    border: 1px solid #dcdcdc;
+    width: 128px;
+    height: 88px;
+    box-shadow: 1px 2px 3px #dcdcdc;
+    background: #fff;
+    list-style: none;
+}
+.file-more-box-recovery{
+    cursor: pointer;
+    width: 105px;
+    height: 44px;
+    padding-left: 23px;
+    line-height: 44px;
+    border: 1px solid #ececec;
+    margin-top: -1px;
+    position: relative;
+    list-style: none;
+    color: #2c2c2c;
+}
+.file-more-box-recovery:hover{
+    background-color: #ECECEC;
+}
+.file-more-box-del{
+    cursor: pointer;
+    width: 105px;
+    height: 44px;
+    padding-left: 23px;
+    line-height: 44px;
+    border: 1px solid #ececec;
+    margin-top: -1px;
+    position: relative;
+    list-style: none;
+    color: #2c2c2c;
+}
+.file-more-box-del:hover{
+    background-color: #ECECEC;
+}
+
+
+
+.file-main-bar{
+    position: absolute;
+    display: none;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 8px;
+    background: #f6f6f6;
+}
+.file-main-scroll{
+    top: 0px;
+    background: #000;
+    width: 8px;
+    /*height: 30px;*/
+    position: absolute;
+    border-radius: 5px;
+    opacity: .4;
+    left: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

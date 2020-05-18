@@ -62,10 +62,10 @@ public interface CourseDao extends BaseMapper<Course> {
 			"set " +
 			"archive_status = 1 " +
 			"where " +
-			"course_id = #{courseId} " +
+			"id = #{id} " +
 			"and" +
 			" archive_status = 0")
-	int archiveCourse(String courseId);
+	int archiveCourse(int id);
 
 	/**
 	 * 归档课程恢复
@@ -76,9 +76,14 @@ public interface CourseDao extends BaseMapper<Course> {
 			"set " +
 			"archive_status = 0 " +
 			"where " +
-			"course_id = #{courseId} " +
+			"id = #{id} " +
 			"and" +
 			" archive_status = 1")
-	int unarchiveCourse(String courseId);
+	int unarchiveCourse(int id);
 
+	@Update("update course set top_status = 1 where id= #{id} and top_status = 0")
+	int topCourse(int id);
+
+	@Update("update course set top_status = 0 where id= #{id} and top_status = 1")
+	int untopCourse(int id);
 }

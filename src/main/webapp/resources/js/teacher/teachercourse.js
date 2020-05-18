@@ -212,34 +212,162 @@ function moreEditA(courseId,courseName,className,year,term) {
     $('#edit-course-studyData-box').attr('value',term);
 }
 // 更多  点击退课
-function moreDropOutA(courseId) {
-    console.log(courseId);
-    $.ajax({
-        url: "/teacgercourse/deletecourse",
-        async: true,
-        cache: false,
-        type: "post",
-        dataType: 'json',
-        data: {
-            courseId: courseId,
-        },
-        success: function (data) {
-            if (data.success) {
-                alert('删除成功！');
-                window.location.reload();
-            } else {
-                alert('删除失败！' + data.errMsg);
-                window.location.reload();
-            }
-        }
-    })
-}
+// function moreDropOutA(courseId) {
+//     console.log(courseId);
+//     $.ajax({
+//         url: "/teacgercourse/deletecourse",
+//         async: true,
+//         cache: false,
+//         type: "post",
+//         dataType: 'json',
+//         data: {
+//             courseId: courseId,
+//         },
+//         success: function (data) {
+//             if (data.success) {
+//                 alert('删除成功！');
+//                 window.location.reload();
+//             } else {
+//                 alert('删除失败！' + data.errMsg);
+//                 window.location.reload();
+//             }
+//         }
+//     })
+// }
 //更多  点击归档
 function moreArchiveA(id) {
 
 }
 
+// 排序滚动条
+function sortMainScrollBar() {
+    let sortMain = $('#sort-main');//可视区域
+    let sortMainFile = $('#sort-main-sort');//内容区域
+    let sortMainBar = $('#sort-main-bar');//滚动条混动区域
+    let sortMainScroll = $('#sort-main-scroll');//滚动条
+    if (sortMainFile.height() >= sortMain.height()){
+        sortMainBar.show();
+        let sortMainScrollHeight = sortMainBar.height() * sortMain.height() / sortMainFile.height();
+        sortMainScroll.height(parseInt(sortMainScrollHeight));
+        $('#sort-main-scroll').draggable({
+            axis:'y',
+            containment:'parent',
+            drag:function() {
+                p = $(this).position();
+                offset = p.top*(sortMainFile.height() - sortMain.height())/(sortMainBar.height() - sortMainScroll.height()-29)*-1;
+                console.log(offset);
+                sortMainFile.css("top",offset);
+            }
+        });
+    }
 
+}
+// 归档滚动条
+function fileMainScrollBar() {
+    let fileMain = $('#file-main');//可视区域
+    let fileMainFile = $('#file-main-file');//内容区域
+    let fileMainBar = $('#file-main-bar');//滚动条混动区域
+    let fileMainScroll = $('#file-main-scroll');//滚动条
+    if (fileMainFile.height() >= fileMain.height()){
+        fileMainBar.show();
+        let fileMainScrollHeight = fileMainBar.height() * fileMain.height() / fileMainFile.height();
+        fileMainScroll.height(parseInt(fileMainScrollHeight));
+        $('#file-main-scroll').draggable({
+            axis:'y',
+            containment:'parent',
+            drag:function() {
+                p = $(this).position();
+                offset = p.top*(fileMainFile.height() - fileMain.height())/(fileMainBar.height() - fileMainScroll.height()-29)*-1;
+                console.log(offset);
+                fileMainFile.css("top",offset);
+            }
+        });
+    }
+
+}
+
+// 归档  点击更多  显示
+function fileMore(courseId) {
+    console.log("归档 显示更多");
+    if ($('#file-more-box' + courseId + '').is(':hidden')){
+        $('#file-more-box' + courseId + '').show();
+    }else {
+        $('#file-more-box' + courseId + '').hide();
+    }
+}
+
+// 主界面 点击 课程排序
+$('#courseSort').click(function () {
+    let bg = document.getElementById("bg");
+    let fileMain = document.getElementById("file-main");  //  归档界面
+    let sortMain = document.getElementById("sort-main");  //  排序界面
+    let sortFile = document.getElementById("sort-file");     //排序 归纳 弹出框
+    let sortFileTitleSort = document.getElementById("sort-file-title-sort");//排序
+    let sortFileTitleFile = document.getElementById("sort-file-title-file");//归档
+    sortFileTitleSort.style.color = "#2d2d2d";
+    sortFileTitleSort.style.borderBottom = "3px solid #aaa";
+    sortFileTitleFile.style.color = "#818181";
+    sortFileTitleFile.style.borderBottom = "3px solid #f8f8f8";
+    bg.style.position = "fixed";
+    fileMain.style.display = "none";
+    sortMain.style.display = "block";
+    sortFile.style.display = "block";
+})
+// 主界面 点击 课程归纳
+$('#courseClassify').click(function () {
+    let bg = document.getElementById("bg");
+    let fileMain = document.getElementById("file-main");  //  归档界面
+    let sortMain = document.getElementById("sort-main");  //  排序界面
+    let sortFile = document.getElementById("sort-file");     //排序 归纳 弹出框
+    let sortFileTitleSort = document.getElementById("sort-file-title-sort");//排序
+    let sortFileTitleFile = document.getElementById("sort-file-title-file");//归档
+    sortFileTitleSort.style.color = "#818181";
+    sortFileTitleSort.style.borderBottom = "3px solid #f8f8f8";
+    sortFileTitleFile.style.color = "#2d2d2d";
+    sortFileTitleFile.style.borderBottom = "3px solid #aaa";
+    bg.style.position = "fixed";
+    fileMain.style.display = "block";
+    sortMain.style.display = "none";
+    sortFile.style.display = "block";
+})
+//归纳 排序 弹出框 点击 排序
+$('#sort-file-title-sort').click(function () {
+    let sortFileTitleSort = document.getElementById("sort-file-title-sort");//排序
+    let sortFileTitleFile = document.getElementById("sort-file-title-file");//归档
+    let fileMain = document.getElementById("file-main");  //  归档界面
+    let sortMain = document.getElementById("sort-main");  //  排序界面
+    sortFileTitleSort.style.color = "#2d2d2d";
+    sortFileTitleSort.style.borderBottom = "3px solid #aaa";
+    sortFileTitleFile.style.color = "#818181";
+    sortFileTitleFile.style.borderBottom = "3px solid #f8f8f8";
+    fileMain.style.display = "none";
+    sortMain.style.display = "block";
+})
+//归纳 排序 弹出框 点击 归纳
+$('#sort-file-title-file').click(function () {
+    let sortFileTitleSort = document.getElementById("sort-file-title-sort");//排序
+    let sortFileTitleFile = document.getElementById("sort-file-title-file");//归档
+    let fileMain = document.getElementById("file-main");  //  归档界面
+    let sortMain = document.getElementById("sort-main");  //  排序界面
+    sortFileTitleSort.style.color = "#818181";
+    sortFileTitleSort.style.borderBottom = "3px solid #f8f8f8";
+    sortFileTitleFile.style.color = "#2d2d2d";
+    sortFileTitleFile.style.borderBottom = "3px solid #aaa";
+    fileMain.style.display = "block";
+    sortMain.style.display = "none";
+})
+//归纳 排序 弹出框 点击 X 关闭页面
+$('#sort-file-title-X').click(function () {
+    let bg = document.getElementById("bg");
+    let fileMain = document.getElementById("file-main");  //  归档界面
+    let sortMain = document.getElementById("sort-main");  //  排序界面
+    let sortFile = document.getElementById("sort-file");     //排序 归纳 弹出框
+    bg.style.position = "";
+    fileMain.style.display = "none";
+    sortMain.style.display = "none";
+    sortFile.style.display = "none";
+    window.location.reload();
+})
 
 
 

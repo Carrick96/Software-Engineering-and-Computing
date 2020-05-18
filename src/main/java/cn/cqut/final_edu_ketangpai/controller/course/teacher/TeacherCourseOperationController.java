@@ -1,6 +1,8 @@
 package cn.cqut.final_edu_ketangpai.controller.course.teacher;
 
 import cn.cqut.final_edu_ketangpai.dto.CourseExecution;
+import cn.cqut.final_edu_ketangpai.dto.CourseOfStudentExecution;
+import cn.cqut.final_edu_ketangpai.dto.CourseOfTeacherExecution;
 import cn.cqut.final_edu_ketangpai.entity.Course;
 import cn.cqut.final_edu_ketangpai.entity.User;
 import cn.cqut.final_edu_ketangpai.enums.CourseStateEnum;
@@ -40,6 +42,88 @@ public class TeacherCourseOperationController {
 	@Autowired
 	private CourseOfStudentService courseOfStudentService;
 
+	@GetMapping("topcourse")
+	private Map<String, Object> topCourse(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<>();
+		int id = HttpServletRequestUtil.getInt(request, "id");
+		try {
+			CourseExecution courseExecution = courseService.topCourse(id);
+			if (courseExecution.getState() != CourseStateEnum.SUCCESS.getState()) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", CourseStateEnum.NULL_COURSEID.getStateInfo());
+				return modelMap;
+			}
+			modelMap.put("success", true);
+			return modelMap;
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+	}
+
+	@GetMapping("untopcourse")
+	private Map<String, Object> untopCourse(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<>();
+		int id = HttpServletRequestUtil.getInt(request, "id");
+		try {
+			CourseExecution courseExecution = courseService.untopCourse(id);
+			if (courseExecution.getState() != CourseStateEnum.SUCCESS.getState()) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", CourseStateEnum.NULL_COURSEID.getStateInfo());
+				return modelMap;
+			}
+			modelMap.put("success", true);
+			return modelMap;
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+	}
+
+	@GetMapping("getteanum")
+	private Map<String, Object> getTeacherNum(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<>();
+		Course course = (Course) request.getSession().getAttribute("course");
+		try {
+			CourseOfTeacherExecution teacherNum = course0fTeacherService.getTeacherNum(course.getCourseId());
+			if (teacherNum.getCount() <= 0) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", "查询失败");
+				return modelMap;
+			}
+			modelMap.put("success", true);
+			modelMap.put("teacherCount", teacherNum.getCount());
+			return modelMap;
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+	}
+
+	@GetMapping("getstunum")
+	private Map<String, Object> getStuNum(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<>();
+		Course course = (Course) request.getSession().getAttribute("course");
+		try {
+			CourseOfStudentExecution studentNum = courseOfStudentService.getStudentNum(course.getCourseId());
+			if (studentNum.getCount() <= 0) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", "查询失败");
+				return modelMap;
+			}
+			modelMap.put("success", true);
+			modelMap.put("studentCount", studentNum.getCount());
+			return modelMap;
+		} catch (Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+	}
+
 	@GetMapping("getcoursebyid")
 	private Map<String, Object> getCourseById(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<>();
@@ -71,6 +155,7 @@ public class TeacherCourseOperationController {
 			return modelMap;
 		}
 	}
+
 	@GetMapping("/coursememberofstudent")
 	private Map<String, Object> courseMember(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<>();
@@ -88,33 +173,46 @@ public class TeacherCourseOperationController {
 			return modelMap;
 		}
 	}
+
 	@GetMapping("archivecourse")
 	private Map<String, Object> archiveCourse(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<>();
-		String courseId = HttpServletRequestUtil.getString(request, "courseId");
-		CourseExecution courseExecution = courseService.archiveCourse(courseId);
-		if (courseExecution.getState() == StatusEnum.SUCCESS.getState()) {
+		int id = HttpServletRequestUtil.getInt(request, "id");
+		try {
+			CourseExecution courseExecution = courseService.archiveCourse(id);
+			if (courseExecution.getState() != CourseStateEnum.SUCCESS.getState()) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", CourseStateEnum.NULL_COURSEID.getStateInfo());
+				return modelMap;
+			}
 			modelMap.put("success", true);
-		} else {
+			return modelMap;
+		} catch (Exception e) {
 			modelMap.put("success", false);
-			modelMap.put("errMsg", CourseStateEnum.NULL_COURSEID.getStateInfo());
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
 		}
-		return modelMap;
 	}
+
 	@GetMapping("unarchivecourse")
 	private Map<String, Object> unarchiveCourse(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<>();
-		String courseId = HttpServletRequestUtil.getString(request, "courseId");
-		CourseExecution courseExecution = courseService.unarchiveCourse(courseId);
-		if (courseExecution.getState() == StatusEnum.SUCCESS.getState()) {
+		int id = HttpServletRequestUtil.getInt(request, "id");
+		try {
+			CourseExecution courseExecution = courseService.unarchiveCourse(id);
+			if (courseExecution.getState() != CourseStateEnum.SUCCESS.getState()) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", CourseStateEnum.NULL_COURSEID.getStateInfo());
+				return modelMap;
+			}
 			modelMap.put("success", true);
-		} else {
+			return modelMap;
+		} catch (Exception e) {
 			modelMap.put("success", false);
-			modelMap.put("errMsg", CourseStateEnum.NULL_COURSEID.getStateInfo());
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
 		}
-		return modelMap;
 	}
-
 
 	@PostMapping("modifycourse")
 	private Map<String, Object> modifyCourse(HttpServletRequest request) {
@@ -147,7 +245,7 @@ public class TeacherCourseOperationController {
 		}
 	}
 
-	@PostMapping("deletecourse")
+	@GetMapping("deletecourse")
 	private Map<String, Object> deleteCourse(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<>();
 		String courseId = HttpServletRequestUtil.getString(request, "courseId");

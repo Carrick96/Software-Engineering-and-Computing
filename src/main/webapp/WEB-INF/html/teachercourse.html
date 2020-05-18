@@ -116,7 +116,7 @@
                     </ul>
                     <div class="course-main-foot">
                         <img class="course-teatherAvatar">
-                        <p class="course-main-foot-member">成员<a  id="course-main-foot-member-num" href="/teachercoursemember">sss</a>人</p>
+                        <p class="course-main-foot-member">成员<a id="course-main-foot-member-num">2</a>人</p>
                         <div class="more" id="more">
                             <p class="more-text">更多</p>
                             <img class="more-img">
@@ -170,7 +170,7 @@
             <button class="add-course-popup-but-cancel" id="add-course-popup-but-cancel">取消</button>
         </div>
     </div>
-<!--    创建课程 弹窗-->
+    <!--    创建课程 弹窗-->
     <div class="establish-course" id="establish-course">
         <div class="establish-course-title">
             <h3>新建课程<i class="close-establish-course" id="close-establish-course"></i></h3>
@@ -202,8 +202,8 @@
             </select>
             <select class="establish-course-studyData-box" id="establish-course-studyData-box">
                 <option name="studyData" value="2018-2019">不限</option>
-                <option name="studyData" value="第一学期">第一学期</option>
-                <option name="studyData" value="第二学期" selected="selected">第二学期</option>
+                <option name="studyData" value="第一学期" selected="selected">第一学期</option>
+                <option name="studyData" value="第二学期">第二学期</option>
             </select>
         </div>
         <div class="establish-course-extra-tips">学生必须额外填写下列信息才能加入课程</div>
@@ -217,8 +217,6 @@
             <button type="button" class="establish-course-sure" id="establish-course-sure">创建</button>
         </div>
     </div>
-
-
     <!--    编辑课程 弹窗-->
     <div class="edit-course" id="edit-course">
         <div class="edit-course-title">
@@ -265,6 +263,47 @@
         <div class="edit-course-btns">
             <button type="button" class="edit-course-cancel" id="edit-course-cancel">取消</button>
             <button type="button" class="edit-course-sure" id="edit-course-sure" title="" >修改</button>
+        </div>
+    </div>
+    <!--    课程排序  归档-->
+    <div class="sort-file" id="sort-file">
+        <div class="sort-file-title">
+            <ul>
+                <li class="sort-file-title-sort" id="sort-file-title-sort">课程排序</li>
+                <li class="sort-file-title-file" id="sort-file-title-file">归档管理</li>
+            </ul>
+            <span class="sort-file-title-X" id="sort-file-title-X"></span>
+        </div>
+        <!--        课程排序-->
+        <div class="sort-main" id="sort-main">
+            <ul class="sort-main-sort">
+                <li>
+                    <i></i>
+                    <span>熟悉  课堂派</span>
+                </li>
+            </ul>
+            <div class="sort-main-bar" id="sort-main-bar">
+                <div class="sort-main-scroll" id="sort-main-scroll"></div>
+            </div>
+        </div>
+        <!--        课程归档-->
+        <div class="file-main" id="file-main">
+            <div class="file-main-file" id="file-main-file">
+<!--                <dl>-->
+<!--                    <dt>-->
+<!--                        <p class="file-title">课堂</p>-->
+<!--                        <p class="file-role">角色：老师</p>-->
+<!--                        <a class="file-more" onclick="fileMore(' + value.courseId +')"></a>-->
+<!--                        <ul class="file-more-box" id="file-more-box' + value.courseId + '">-->
+<!--                            <li class="file-more-box-recovery" onclick="fileMoreBoxRecovery(' + value.courseId +')"><a href="javascript:;">恢复</a></li>-->
+<!--                            <li class="file-more-box-del" onclick="fileMoreBoxDel(' + value.courseId +')"><a href="javascript:;">退课</a></li>-->
+<!--                        </ul>-->
+<!--                    </dt>-->
+<!--                </dl>-->
+            </div>
+            <div class="file-main-bar" id="file-main-bar">
+                <div class="file-main-scroll" id="file-main-scroll"></div>
+            </div>
         </div>
     </div>
 </div>
