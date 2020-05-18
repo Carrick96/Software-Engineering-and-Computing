@@ -149,6 +149,8 @@ function JQergodicfile() {
         if (data.success) {
             let teacherFileList = data.courseList;
             var fileCourseHtml = "";
+            let topNum = 0;//判断置顶个数
+            let unpinNum = 0;//判断非置顶个数
             $.each(teacherFileList,function (n,value) {
                 if (value.archiveStatus == 1){
                     fileCourseHtml += '<dl>';
