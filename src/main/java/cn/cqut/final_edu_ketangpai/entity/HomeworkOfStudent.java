@@ -78,6 +78,10 @@ public class HomeworkOfStudent implements Serializable {
 	@TableField("modify_time")
 	private LocalDateTime modifyTime;
 
+	@TableField("homework_message")
+	private String homeworkMessage;
+
 	private static final long serialVersionUID = 1L;
+
 }
 

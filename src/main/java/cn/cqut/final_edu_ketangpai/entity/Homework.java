@@ -27,12 +27,16 @@ public class Homework implements Serializable {
 	 */
 	@TableField("detail")
 	private String detail;
-
+	/**
+	 * 最高分
+	 */
+	@TableField("top_score")
+	private String topScore;
 	/**
 	 * 截止日期
 	 */
 	@TableField("deadline")
-	private Date deadline;
+	private Date deadLine;
 
 	/**
 	 *
@@ -58,6 +62,8 @@ public class Homework implements Serializable {
 	@TableField("modify_date")
 	private LocalDateTime modifyDate;
 
+	@TableField(" homework_id")
+	private String homeworkId;
 	/**
 	 *
 	 */
@@ -65,6 +71,10 @@ public class Homework implements Serializable {
 	@TableLogic
 	private Boolean deleteStatus;
 
+	@TableField("remind_message")
+	private String remindMessage;
+
 	private static final long serialVersionUID = 1L;
+
 }
 

@@ -23,4 +23,6 @@ public class CourseIndexController {
 	private String teacherCourseMember() {
 		return "/member";
 	}
+
+
 }

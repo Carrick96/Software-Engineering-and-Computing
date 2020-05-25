@@ -19,10 +19,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mybatis.plus.version>3.1.0</mybatis.plus.version>
+        <justauth-spring-boot.version>1.1.0</justauth-spring-boot.version>
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.xkcoding</groupId>
+            <artifactId>justauth-spring-boot-starter</artifactId>
+            <version>${justauth-spring-boot.version}</version>
+        </dependency>
         <!-- 图片处理 -->
         <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
         <dependency>

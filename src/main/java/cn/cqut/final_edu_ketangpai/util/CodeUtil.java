@@ -16,7 +16,7 @@ public class CodeUtil {
 		String verifyCodeActual = HttpServletRequestUtil.getString(request, "verifyCodeActual");
 		return verifyCodeActual == null || !verifyCodeActual.equals(verifyCodeExpected);
 	}
-	public static String generateClassId() {
+	public static String generateId() {
 		char[] c = CharacterUtil.AllCharacter.charArray();//获取包含26个字母大小写和数字的字符数组
 //        System.out.println(Arrays.toString(c));
 

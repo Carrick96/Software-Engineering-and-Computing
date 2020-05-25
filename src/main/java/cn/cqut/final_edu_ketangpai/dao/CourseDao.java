@@ -82,8 +82,10 @@ public interface CourseDao extends BaseMapper<Course> {
 	int unarchiveCourse(int id);
 
 	@Update("update course set top_status = 1 where id= #{id} and top_status = 0")
+		// TODO: 2020/5/19 修改id为courseId
 	int topCourse(int id);
 
 	@Update("update course set top_status = 0 where id= #{id} and top_status = 1")
+	//TODO: 2020/5/19 修改id为courseId
 	int untopCourse(int id);
 }

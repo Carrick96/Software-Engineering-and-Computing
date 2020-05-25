@@ -11,12 +11,6 @@ $(function () {
     let establishCourseStudyDataBox = document.getElementById("establish-course-studyData-box"); //得到 学期  select
     let establishCourseStudyDataBoxpts = establishCourseStudyDataBox.getElementsByTagName("option");//得到学期数组option
 
-//更多  点击退课
-//     function moreDropOutA(courseId){
-//
-//     }
-
-
     $('#establish-course-sure').click(function () {
         let establish = {};
         establish.courseName = $("#input-establish-course-name").val();
@@ -275,10 +269,10 @@ function fileMoreBoxRecovery(id) {
         success: function (data) {
             if (data.success) {
                 alert('恢复成功！');
-                /* window.location.reload();*/
+                window.location.reload();
             } else {
                 alert('恢复失败！' + data.errMsg);
-                /*  window.location.reload();*/
+                window.location.reload();
             }
         }
     })
@@ -307,3 +301,59 @@ function fileMoreBoxDel(courseId) {
         }
     })
 }
+//发布作业界面 确定按钮
+$('#release-personal-sure').click(function () {
+    console.log("作业名：" + $('#input-box-work-name').val());//作业名
+    console.log("作业内容：" + $('#work-editor-txt').val());//作业内容
+    console.log("截止日期：" + $('#input-box-end-data-txt').val());//截止日期
+    console.log("满分值：" + $('#release-homework-height-score').val());//满分值
+    console.log("查重警告：" + $('#release-homework-check-warm').val());//查重警告
+    console.log("超过查重：" + $('#release-homework-check-highest').val());//超过查重 打回
+    console.log("课程id：" + $('#work-main-release-chose').val());//超过查重 打回
+    var releaseWork = {};
+    releaseWork.inputBoxWorkName = $("#input-box-work-name").val();//作业名
+    releaseWork.workEditorTxt = $("#work-editor-txt").val();//作业内容
+    releaseWork.inputBoxEndDataTxt = $("#input-box-end-data-txt").val();//截止日期
+    releaseWork.releaseHomeworkHeightScore = $("#release-homework-height-score").val();//满分值
+    releaseWork.releaseHomeworkCheckWarm = $("#release-homework-check-warm").val();//查重警告值
+    releaseWork.releaseHomeworkCheckHighest = $("#release-homework-check-highest").val();//超过查重 打回
+    releaseWork.workMainReleaseChose = $("#work-main-release-chose").val();//课程Id
+    var formData = new FormData();
+    formData.append("releaseWorkStr",JSON.stringify(releaseWork));
+    $.ajax({
+        url: '/teacherhomework/addhomework',
+        type: 'post',
+        data: formData,
+        dataType: JSON,
+        contentType: false,
+        processData: false,
+        async: true,
+        cache: false,
+        beforeSend: function (xmlHttp) {
+            xmlHttp.setRequestHeader("If-Modified-Since", "0");
+            xmlHttp.setRequestHeader("Cache-Control", "no-cache");
+        },
+        success: function (data) {
+            if (data.success) {
+                alert(111);
+                $('#input-box-work-name').html("");
+                $('#work-editor-txt').html("");
+                $('#input-box-end-data-txt').html("");
+                $('#release-homework-height-score').html("");
+                $('#release-homework-check-warm').html("");
+                $('#release-homework-check-highest').html("");
+                $('#work-main-release-chose').html("");
+                $("#work-main-release-chose").attr("value",'0');
+                let bg = document.getElementById("bg");
+                let releaseActivity = document.getElementById("release-activity");
+                bg.style.position = "";
+                releaseActivity.style.display = "none";
+                alert('发布成功！');
+                window.location.reload();
+
+            } else {
+                alert('发布失败！' + data.errMsg);
+            }
+        }
+    });
+});

@@ -13,7 +13,7 @@ $(function () {
     studentAddCourse();//教师添加课程、传值
     AddEstablish();//添加/创建课程 显示
     teacherEstablishCourse();// 弹出创建课程 框
-})
+});
 // 工具 隐藏
 let Tool = document.getElementById('tool');
 let Ultool = document.getElementById('ul-tool');
@@ -24,7 +24,7 @@ Tool.onclick = function () {
         Ultool.style.display = 'none';
     }
 
-}
+};
 
 // 通知隐藏
 let Nitice = document.getElementById('notice');
@@ -35,7 +35,7 @@ Nitice.onclick = function () {
     } else {
         Divnotice.style.display = 'none';
     }
-}
+};
 // 个人信息隐藏
 let Info = document.getElementById('info');
 let Userinfo = document.getElementById('userinfo');
@@ -45,7 +45,7 @@ Info.onclick = function () {
     } else {
         Userinfo.style.display = 'none';
     }
-}
+};
 
 // 添加/创建课程  点击
 function AddEstablish() {
@@ -69,19 +69,19 @@ function teacherEstablishCourse() {
     divContentEstablish.onclick = function () {
         bg.style.position = "fixed";
         establishCourse.style.display = "block"
-    }
+    };
 // 上层（其他课程）点击 弹出 添加课程框
     let onLevelOtherCourseCreateCourseAdd = document.getElementById("onLevel-otherCourse-create-course-add");
     onLevelOtherCourseCreateCourseAdd.onclick = function () {
         bg.style.position = "fixed";
         establishCourse.style.display = "block"
-    }
+    };
 // 下层（其他课程）点击 弹出 添加课程框
     let lowerLevelOtherCourseCreateCourseAdd = document.getElementById("lowerLevel-otherCourse-create-course-add");
     lowerLevelOtherCourseCreateCourseAdd.onclick = function () {
         bg.style.position = "fixed";
         establishCourse.style.display = "block"
-    }
+    };
 
     // 重置数据
     let inputEstablishCourseName = document.getElementById("input-establish-course-name");//课程名
@@ -104,7 +104,7 @@ function teacherEstablishCourse() {
         for (let i = 0; i < extraInfor.length; i++) {  //额外信息恢复默认
             extraInfor[i].checked = false;
         }
-    }
+    };
     //  创建课程框  X 关闭
     let closeEstablishCourse = document.getElementById("close-establish-course")//  X 关闭弹出框
     closeEstablishCourse.onclick = function () {
@@ -117,7 +117,7 @@ function teacherEstablishCourse() {
         for (let i = 0; i < extraInfor.length; i++) {  //额外信息恢复默认
             extraInfor[i].checked = false;
         }
-    }
+    };
 
     // 编辑课程 重置数据
     let inputEditCourseName = document.getElementById("input-edit-course-name");//课程名
@@ -140,7 +140,7 @@ function teacherEstablishCourse() {
         for (let i = 0; i < editExtraInfor.length; i++) {  //额外信息恢复默认
             editExtraInfor[i].checked = false;
         }
-    }
+    };
     //  创建课程框  X 关闭
     let closeEditCourse = document.getElementById("close-edit-course")//  X 关闭弹出框
     closeEditCourse.onclick = function () {
@@ -154,17 +154,7 @@ function teacherEstablishCourse() {
             editExtraInfor[i].checked = false;
         }
     }
- /*   function getCourseInfo(courseId) {
-        $.getJSON(courseInfoUrl,function (data) {
-            if (data.success) {
-                let course = data.course;
-                $("#input-establish-course-name").val(course.courseName);
-                $("#input-establish-class-name").val(course.className);
 
-            }
-
-        })
-    }*/
     //创建课程 确认按钮
 
 }
@@ -178,7 +168,7 @@ function studentAddCourse() {
     divContentAdd.onclick = function () {
         bg.style.position = "fixed";
         addCoursePopup.style.display = "block"
-    }
+    };
 
 //  添加课程框  取消按钮
     let addCoursePopupButCancel = document.getElementById("add-course-popup-but-cancel");
@@ -186,8 +176,6 @@ function studentAddCourse() {
         bg.style.position = "";
         addCoursePopup.style.display = "none"
     }
-
-
 
     // 添加课程框   确认按钮
 
@@ -211,29 +199,7 @@ function moreEditA(courseId,courseName,className,year,term) {
     $('#edit-course-year-box').attr('value',year);
     $('#edit-course-studyData-box').attr('value',term);
 }
-// 更多  点击退课
-// function moreDropOutA(courseId) {
-//     console.log(courseId);
-//     $.ajax({
-//         url: "/teacgercourse/deletecourse",
-//         async: true,
-//         cache: false,
-//         type: "post",
-//         dataType: 'json',
-//         data: {
-//             courseId: courseId,
-//         },
-//         success: function (data) {
-//             if (data.success) {
-//                 alert('删除成功！');
-//                 window.location.reload();
-//             } else {
-//                 alert('删除失败！' + data.errMsg);
-//                 window.location.reload();
-//             }
-//         }
-//     })
-// }
+
 //更多  点击归档
 function moreArchiveA(id) {
 
@@ -312,7 +278,7 @@ $('#courseSort').click(function () {
     fileMain.style.display = "none";
     sortMain.style.display = "block";
     sortFile.style.display = "block";
-})
+});
 // 主界面 点击 课程归纳
 $('#courseClassify').click(function () {
     let bg = document.getElementById("bg");
@@ -329,7 +295,7 @@ $('#courseClassify').click(function () {
     fileMain.style.display = "block";
     sortMain.style.display = "none";
     sortFile.style.display = "block";
-})
+});
 //归纳 排序 弹出框 点击 排序
 $('#sort-file-title-sort').click(function () {
     let sortFileTitleSort = document.getElementById("sort-file-title-sort");//排序
@@ -342,7 +308,7 @@ $('#sort-file-title-sort').click(function () {
     sortFileTitleFile.style.borderBottom = "3px solid #f8f8f8";
     fileMain.style.display = "none";
     sortMain.style.display = "block";
-})
+});
 //归纳 排序 弹出框 点击 归纳
 $('#sort-file-title-file').click(function () {
     let sortFileTitleSort = document.getElementById("sort-file-title-sort");//排序
@@ -355,7 +321,7 @@ $('#sort-file-title-file').click(function () {
     sortFileTitleFile.style.borderBottom = "3px solid #aaa";
     fileMain.style.display = "block";
     sortMain.style.display = "none";
-})
+});
 //归纳 排序 弹出框 点击 X 关闭页面
 $('#sort-file-title-X').click(function () {
     let bg = document.getElementById("bg");
@@ -366,8 +332,61 @@ $('#sort-file-title-X').click(function () {
     fileMain.style.display = "none";
     sortMain.style.display = "none";
     sortFile.style.display = "none";
-    window.location.reload();
+});
+//点击 快速发布活动
+$('#div-content-release-activity').click(function () {
+    let bg = document.getElementById("bg");
+    let releaseActivity = document.getElementById("release-activity");
+    bg.style.position = "fixed";
+    releaseActivity.style.display = "block";
 })
 
+//点击 快速发布活动 X 按钮
+$('#close-release-activity').click(function () {
+    let bg = document.getElementById("bg");
+    let releaseActivity = document.getElementById("release-activity");
+    bg.style.position = "";
+    releaseActivity.style.display = "none";
+})
+
+//点击 快速发布活动 作业
+$('#release-activity-content-work').click(function () {
+    let bg = document.getElementById("bg");
+    let releaseActivity = document.getElementById("release-activity");
+    let releasePersonalWork = document.getElementById("release-personal-work");
+    bg.style.position = "fixed";
+    releaseActivity.style.display = "none";
+    releasePersonalWork.style.display = "block";
+})
+//点击 快速发布活动 X 按钮
+$('#close-release-personal-work').click(function () {
+    $('#input-box-work-name').val("");
+    $('#work-editor-txt').val("");
+    $('#input-box-end-data-txt').val("");
+    $('#release-homework-height-score').val("");
+    $('#release-homework-check-warm').val("");
+    $('#release-homework-check-highest').val("");
+    $('#work-main-release-chose').val("");
+    $("#work-main-release-chose").attr("value",'0');
+    let bg = document.getElementById("bg");
+    let releasePersonalWork = document.getElementById("release-personal-work");
+    bg.style.position = "";
+    releasePersonalWork.style.display = "none";
+})
+//点击 快速发布活动 取消 按钮
+$('#release-personal-cancel').click(function () {
+    $('#input-box-work-name').val("");
+    $('#work-editor-txt').val("");
+    $('#input-box-end-data-txt').val("");
+    $('#release-homework-height-score').val("");
+    $('#release-homework-check-warm').val("");
+    $('#release-homework-check-highest').val("");
+    $('#work-main-release-chose').val("");
+    $("#work-main-release-chose").attr("value",'0');
+    let bg = document.getElementById("bg");
+    let releasePersonalWork = document.getElementById("release-personal-work");
+    bg.style.position = "";
+    releasePersonalWork.style.display = "none";
+})
 
 

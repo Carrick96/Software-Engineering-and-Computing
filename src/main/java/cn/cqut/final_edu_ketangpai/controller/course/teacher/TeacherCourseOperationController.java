@@ -4,6 +4,7 @@ import cn.cqut.final_edu_ketangpai.dto.CourseExecution;
 import cn.cqut.final_edu_ketangpai.dto.CourseOfStudentExecution;
 import cn.cqut.final_edu_ketangpai.dto.CourseOfTeacherExecution;
 import cn.cqut.final_edu_ketangpai.entity.Course;
+import cn.cqut.final_edu_ketangpai.entity.Homework;
 import cn.cqut.final_edu_ketangpai.entity.User;
 import cn.cqut.final_edu_ketangpai.enums.CourseStateEnum;
 import cn.cqut.final_edu_ketangpai.enums.StatusEnum;
@@ -133,13 +134,29 @@ public class TeacherCourseOperationController {
 			map.put("success", false);
 			map.put("errMsg", CourseStateEnum.NULL_COURSE);
 		}
+		/*map.put("course", courseExecution.getCourse());*/
 		map.put("success", true);
 		request.getSession().setAttribute("course", courseExecution.getCourse());
 		return map;
 	}
 
+	@GetMapping("/getcoursedetail")
+	private Map<String, Object> getCourseDetail(HttpServletRequest request) {
+		Map<String, Object> modelMap = new HashMap<>();
+		Course course = (Course) request.getSession().getAttribute("course");
+		if (course == null) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", CourseStateEnum.NULL_COURSEID.getStateInfo());
+			return modelMap;
+		}
+		modelMap.put("course", course);
+		modelMap.put("success", true);
+		return modelMap;
+	}
+
 	@GetMapping("/coursememberofteacher")
 	private Map<String, Object> courseMemberOfTeacher(HttpServletRequest request) {
+
 		Map<String, Object> modelMap = new HashMap<>();
 		Course course = (Course) request.getSession().getAttribute("course");
 		try {
@@ -254,7 +271,7 @@ public class TeacherCourseOperationController {
 			CourseExecution courseExecution = courseService.deleteCourseById(courseId);
 			if (courseExecution.getState() != StatusEnum.SUCCESS.getState()) {
 				modelMap.put("success", false);
-				modelMap.put("errMsg", StatusEnum.SERVICE_ERROR);
+				modelMap.put("errMsg", StatusEnum.SERVICE_ERROR.getStateInfo());
 			} else {
 				modelMap.put("success", true);
 			}
@@ -294,7 +311,7 @@ public class TeacherCourseOperationController {
 	}
 
 	@GetMapping("/getcourselist")
-	private Map<String, Object> getCourseList() {
+	private Map<String, Object> getCourseList(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<>();
 		try {
 			User currentUser = UserTool.getCurrentUser();
@@ -303,6 +320,9 @@ public class TeacherCourseOperationController {
 				return modelMap;
 			}
 			CourseExecution courseExecution = courseService.getTeacherCourseList(currentUser.getUserId());
+			List<Homework> homeworkList = (List<Homework>) request.getSession().getAttribute("homeworkList");
+			assert homeworkList.size() != 0;
+			modelMap.put("homeworkList",homeworkList);
 			modelMap.put("courseList", courseExecution.getCourseList());
 			modelMap.put("success", true);
 		} catch (Exception e) {
@@ -322,11 +342,12 @@ public class TeacherCourseOperationController {
 		try {
 			assert establishStr != null;
 			course = mapper.readValue(establishStr, Course.class);
-			course.setCourseId(CodeUtil.generateClassId());
+			course.setCourseId(CodeUtil.generateId());
 			course.setTeacherId(currentUser.getUserId());
 			course.setTeacherName(currentUser.getUsername());
 			course.setCreateDate(LocalDateTime.now());
 			course.setModifyDate(LocalDateTime.now());
+			course.setTopStatus(false);
 			CourseExecution courseExecution = courseService.addCourse(course);
 			CourseExecution courseExecution1 = course0fTeacherService.joinCourse(currentUser.getUserId(), course.getCourseId());
 			if (courseExecution.getState() == StatusEnum.SUCCESS.getState()

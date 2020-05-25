@@ -59,7 +59,7 @@ public class StudentCourseOperationController {
 	}
 
 	@GetMapping("getcourselist")
-	private Map<String, Object> getCourseList() {
+	private Map<String, Object> getCourseList(HttpServletRequest request) {
 		Map<String, Object> modelMap = new HashMap<>();
 		try {
 			User currentUser = UserTool.getCurrentUser();
@@ -68,6 +68,7 @@ public class StudentCourseOperationController {
 				return modelMap;
 			}
 			CourseExecution courseExecution = courseService.getStudentCourseList(currentUser.getUserId());
+			request.getSession().setAttribute("courseList",courseExecution.getCourseList());
 			modelMap.put("courseList", courseExecution.getCourseList());
 			modelMap.put("success", true);
 		} catch (Exception e) {

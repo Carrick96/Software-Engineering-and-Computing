@@ -44,7 +44,7 @@ public class CourseOfStudentServiceImpl extends ServiceImpl<CourseOfStudentDao, 
 		}
 		CourseExecution courseExecution = null;
 		assert course != null;
-		int studentNum = courseOfStudentDao.getStudentNum(currentUser.getUserId(), course.getCourseId());
+		int studentNum = courseOfStudentDao.getStudentNum(course.getCourseId());
 		assert false;
 		courseExecution.setCount(studentNum);
 		return courseExecution;
